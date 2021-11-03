@@ -6,23 +6,23 @@ const useVisualMode = (initial) => {
   const [history, setHistory] = useState([initial]);
 
   
-  const transition = (newMode) => {
+  const transition = (newMode, replace = false) => {
     setMode(newMode);
-    setHistory([...history, newMode]);
+    if (replace) {
+      setHistory([...history.slice(0, history.length - 1), newMode]);
+    } else {
+      setHistory([...history, newMode]);
+    }
   };
 
   const back = () => {
     const length = history.length;
-    // console.log('lemght:',length);
     if (length > 1) {
-      // console.log('1',history);
       setHistory(history.slice(0,length - 1));
       setMode(history[history.length - 2]);
-      // console.log('2',history);
     }
   };
 
-  //[empty, show, create, edit, saving, deleting, confirm]
   return { mode, transition, back };
 
 };

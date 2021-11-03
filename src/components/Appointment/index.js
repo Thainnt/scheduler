@@ -5,6 +5,7 @@ import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
+import Error from "./Error";
 
 import useVisualMode from "hooks/useVisualMode";
 import Status from "./Status";
@@ -17,8 +18,11 @@ const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
+  const { mode, transition, back } = useVisualMode( props.interview ? SHOW : EMPTY);
 
   function save(name, interviewer) {
     const interview = {
@@ -29,6 +33,9 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview)
      .then(res => {
        transition(SHOW);
+     })
+     .catch(err => {
+       transition(ERROR_SAVE);
      })
   }
 
@@ -43,6 +50,9 @@ export default function Appointment(props) {
       .then(res => {
         transition(EMPTY);
       })
+      .catch(error => {
+        transition(ERROR_DELETE, true);
+      })
   }
 
   function edit() {
@@ -50,7 +60,6 @@ export default function Appointment(props) {
 
   }
 
-  const { mode, transition, back } = useVisualMode( props.interview ? SHOW : EMPTY);
   
   return (
     <article className="appointment">
@@ -93,7 +102,19 @@ export default function Appointment(props) {
         <Form
           interviewers={props.interviewers}
           onSave={save}
-          onCancel={() => back(EMPTY)}
+          onCancel={() => back()}
+        />
+      )}
+      {mode === ERROR_SAVE && (
+        <Error
+          message="We are experiencing some issues. The appointment can not be proceeded."
+          onClose={() => back()}
+        />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error
+          message="We are experiencing some issues. The appointment can not be deleted."
+          onClose={() => back()}
         />
       )}
 
