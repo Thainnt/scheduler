@@ -1,7 +1,7 @@
 # Interview Scheduler
-An application that allows users to book interviews with the interviewers.
-Users can input name, select interviewer and create interview at available time slot.
-Users can also edit or cancel existing interviews.
+An application that allows users to book interviews with the interviewers.\
+Users can input name, select interviewer and create interview at available time slot.\
+Users can also edit or cancel existing interviews.\
 **Dependencies:**
 - React
 - Axios
@@ -32,3 +32,9 @@ npm test
 ```sh
 npm run storybook
 ```
+## Screenshots
+!["Screenshot of the app"](https://github.com/Thainnt/scheduler/blob/master/docs/mainscreen.png?raw=true)
+
+!["Screenshot of creating or editing appointment"](https://github.com/Thainnt/scheduler/blob/master/docs/create-edit.png?raw=true)
+
+!["Screenshot of canceling appointment"](https://github.com/Thainnt/scheduler/blob/master/docs/cancel.png?raw=true)
