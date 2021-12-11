@@ -33,8 +33,11 @@ npm test
 npm run storybook
 ```
 ## Screenshots
+### Landing page
 !["Screenshot of the app"](https://github.com/Thainnt/scheduler/blob/master/docs/mainscreen.png?raw=true)
 
+### Create or edit an appointment
 !["Screenshot of creating or editing appointment"](https://github.com/Thainnt/scheduler/blob/master/docs/create-edit.png?raw=true)
 
+### Cancel an appointment
 !["Screenshot of canceling appointment"](https://github.com/Thainnt/scheduler/blob/master/docs/cancel.png?raw=true)
